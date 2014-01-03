@@ -23,8 +23,9 @@ class emailer(object):
         port = 587
         
         ## Info for the gmail account sending the mail
-        password = 'gordisawesome'
-        self.sender = 'ubcdcit@gmail.com'
+        ## should change this to command line parameters or run an smtp server locally
+        password = 'DER'
+        self.sender = 'DER@gmail.com'
         
         self.subject = 'Partner Search'
         

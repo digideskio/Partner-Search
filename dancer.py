@@ -10,14 +10,14 @@ class dancer(object):
     '''
 
 
-    def __init__(self, name, email, isLead, code, choices):
+    def __init__(self, name, email, isLead, code):
         self.name = str(name)
         self.email = str(email)
         self.isLead = bool(isLead)
         self.choices = list()
         self.code = code
         self.matches = list()
-        self.choices = list(choices)
+        self.choices = list()
         self.dancedWith = list()
         self.busy = 0
         
