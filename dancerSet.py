@@ -4,7 +4,7 @@ Created on 2013-01-08
 @author: Gord
 '''
 
-import root.emailer
+import emailer
 import random
 
 class dancerSet(object):
@@ -120,51 +120,5 @@ class dancerSet(object):
                 self.follows[j].dancedWith.pop()
             
     def setup(self):
-        corneliu = root.dancer.dancer("Corneliu ", "cbolbocean@gmail.com", 1, 21, [44,48,34,26,36,30])
-        self.addDancer(corneliu)
-        micah = root.dancer.dancer("Micah Sienna", "micah.sienna@gmail.com", 1, 23, [])
-        self.addDancer(micah)
-        wen = root.dancer.dancer("Wen Cheang", "cheangwen@hotmail.com", 1, 25, [20,26,32,36,28,22,34,30,40])
-        self.addDancer(wen)
-        connor = root.dancer.dancer("Connor Omand", "comand92@hotmail.com", 1, 27, [20,40,44,28,36,22,24])
-        self.addDancer(connor)
-        kirk = root.dancer.dancer("Kirk Lee", "kirklee@hotmail.com", 1, 29, [])
-        self.addDancer(kirk)
-        calvin = root.dancer.dancer("Calvin Pin", "calvman_778@hotmail.com", 1, 33, [20,24,48])
-        self.addDancer(calvin)
-        joseph = root.dancer.dancer("Joseph", "josephparedes1@gmail.com", 1, 35, [28,36,20])
-        self.addDancer(joseph)
-        jian = root.dancer.dancer("Jian ", "jian_ji1@hotmail.com", 1, 39, [28,34,44,24,40,48])
-        self.addDancer(jian)
-        albert = root.dancer.dancer("Albert Saravi", "atasaravi@hotmail.com", 1, 41, [34,30,48,22,36,40,28,20,44,26,32])
-        self.addDancer(albert)
-        
-        alex = root.dancer.dancer("Alex Franco", "3afranco@gmail.com", 0, 20, [33])
-        self.addDancer(alex)
-        isabella = root.dancer.dancer("Isabella Laird", "izzylaird@yahoo.ca", 0, 22, [33,23])
-        self.addDancer(isabella)
-        jessica = root.dancer.dancer("Jessica Yeung", "jessicaylyeung@gmail.com", 0, 24, [33])
-        self.addDancer(jessica)
-        jessie = root.dancer.dancer("Jessie Chung", "jessie.cl.chung@gmail.com", 0, 26, [])
-        self.addDancer(jessie)
-        kristina = root.dancer.dancer("Kristina Richmond", "k+richmond21@hotmail.com", 0, 28, [])
-        self.addDancer(kristina)
-        gloria = root.dancer.dancer("Gloria ", "gloria_cyb@yahoo.ca", 0, 30, [41,21,39,33])
-        self.addDancer(gloria)
-        ruth = root.dancer.dancer("Ruth Gu", "542184491@qq.com", 0, 32, [])
-        self.addDancer(ruth)
-        katherine = root.dancer.dancer("Katherine Crawford", "kathacrawford@gmail.com", 0, 34, [])
-        self.addDancer(katherine)
-        theresa = root.dancer.dancer("Theresa Mammarella", "mammarellatheresa8@gmail.com", 0, 36, [])
-        self.addDancer(theresa)
-        angela = root.dancer.dancer("Angela Wang", "angela9wang@gmail.com", 0, 38, [])
-        self.addDancer(angela)
-        natchar = root.dancer.dancer("Natchar Ratanasirigulchai", "n.ratanasirigulchai@yahoo.com", 0, 40, [])
-        self.addDancer(natchar)
-        angela2 = root.dancer.dancer("Angela Hu", "angelahu@live.ca", 0, 42, [])
-        self.addDancer(angela2)
-        judy = root.dancer.dancer("Judy Zhu", "judytvxqyz@gmail.com", 0, 44, [21,39])
-        self.addDancer(judy)
-        julia = root.dancer.dancer("Julia Wei", "juliawei2009@gmail.com", 0, 48, [])
-        self.addDancer(julia)
-            
+        ## previously added dancers here
+        print("Did nothing.")

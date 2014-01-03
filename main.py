@@ -4,14 +4,14 @@ Created on 2013-01-08
 @author: Gord
 '''
 
-import root.dancer
-import root.dancerSet
-import root.emailer
-import root.partnerSearchManager
+import dancer
+import dancerSet
+import emailer
+import partnerSearchManager
 
 if __name__ == '__main__':
     
-    danceClub = root.dancerSet.dancerSet()
+    danceClub = dancerSet.dancerSet()
     
     ## A list of dancers and their choices
     ## and add them to the club
@@ -87,7 +87,7 @@ if __name__ == '__main__':
     
         
     # Setup the emailer and send out the emails
-    mailer = root.emailer.emailer()
+    mailer = emailer.emailer()
     danceClub.sendEmails(mailer)
     mailer.quitEmail()
     print("Done!")

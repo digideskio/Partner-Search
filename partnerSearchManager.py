@@ -4,8 +4,8 @@ Created on 2013-02-08
 @author: Gord
 '''
 
-import root.dancerSet
-import root.dancer
+import dancerSet
+import dancer
 
 class partnerSearchManager(object):
     '''
