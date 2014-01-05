@@ -111,18 +111,18 @@ class dancerSet(object):
         ## alg idea. Create all matchings first with progressive offset
         ## then shuffle the order
         
-        bigGroup = len(self.leads) > len(self.follows) ? self.leads : self.follows
-        smallGroup = bigGroup == self.leads ? self.follows : self.leads 
+        bigGroup = self.leads if len(self.leads) > len(self.follows) else self.follows
+        smallGroup = self.follows if bigGroup == self.leads else self.leads 
         allPairings = list()
         
-        for offset in range(max(len(self.leads), len(self.follows)):      
+        for offset in range(max(len(self.leads), len(self.follows))):      
             pairing = list()
             
             for i in range(len(smallGroup)):
                 i = (i + offset) % len(smallGroup)
                 
                 for j in range(len(bigGroup)):
-                    if smallGroup[i].hasDancedWith(bigGroup[j]):
+                    if not smallGroup[i].hasDancedWith(bigGroup[j]):
                         match = smallGroup[i].toStringNumName() + " and " + bigGroup[j].toStringNumName()
                         pairing.append(match)
                         smallGroup[i].danceWith(bigGroup[j])

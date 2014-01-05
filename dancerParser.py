@@ -4,17 +4,23 @@ Created on 2014-01-02
 @author: Gord
 '''
 
-import dancer
+from dancer import dancer
 import dancerSet
 
 class dancerParser(object):
 
     def __init__(self, dancersFile):
-        self.file = open(dancersFile, 'r')
+        try:
+            self.file = open(dancersFile, 'r')
+            print("Successfully opened {0}".format(dancersFile))
+        except FileNotFoundError:
+            print("Error: could not find file.")
+            self.file = 0
         
     def parseToDancerSet(self):
         # name|email|lead/follow|code
         set = dancerSet.dancerSet()
+        count = 0
         
         for line in self.file:
             arr = line.split("|")
@@ -28,9 +34,12 @@ class dancerParser(object):
                 isLead = arr[2].lower() == "lead"
                 code = arr[3]
                 
-                dancer = dancer.dancer(name, email, isLead, code)
-                set.addDancer(dancer)
+                d = dancer(name, email, isLead, code)
+                set.addDancer(d)
+                count += 1
+                print(d.toStringNumName())
         
+        print("Finished parsing {0} lines.".format(str(count)))
         self.file.close()        
         return set
         
