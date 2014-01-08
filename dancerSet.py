@@ -40,12 +40,12 @@ class dancerSet(object):
                 break
                 
     def setChoicesByCode(self, code, choices):
-        for lead in leads:
+        for lead in self.leads:
             if (code == lead.code):
                 lead.setChoices(choices)
                 return
         
-        for follow in follows:
+        for follow in self.follows:
             if (code == follow.code):
                 follow.setChoices(choices)
                 return

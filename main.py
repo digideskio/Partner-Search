@@ -12,7 +12,7 @@ import dancerSet
 import emailer
 import partnerSearchManager
 from dancerParser import dancerParser
-import matchParser
+from matchParser import matchParser
 
 set = dancerSet.dancerSet()
 

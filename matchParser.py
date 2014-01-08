@@ -7,7 +7,7 @@ Created on 2014-01-02
 import dancer
 import dancerSet
 
-class dancerParser(object):
+class matchParser(object):
 
     def __init__(self, choicesFile):
         self.file = open(choicesFile, 'r')
