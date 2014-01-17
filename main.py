@@ -14,7 +14,6 @@ import partnerSearchManager
 from dancerParser import dancerParser
 from matchParser import matchParser
 
-set = dancerSet.dancerSet()
 
 def printMainOptions():
     print("""What would you like to do?
@@ -26,34 +25,39 @@ def printMainOptions():
     """)
     
 def setupDancers():
-    userInput = input("Enter the name of the file contianing the dancer info: ")
-    parser = dancerParser(userInput)
-    set = parser.parseToDancerSet()
+    file = raw_input("Enter the name of the file contianing the dancer info: ")
+    parser = dancerParser(file)
+    theSet = parser.parseToDancerSet()
+    numDancers = len(theSet.leads) + len(theSet.follows)
+    print("Setup " + str(numDancers) + " dancers.")
+    return theSet
 
-def setupChoices():
-    userInput = input("Enter the name of the file containing the dancer's choices: ")
+def setupChoices(danceClub):
+    userInput = raw_input("Enter the name of the file containing the dancer's choices: ")
     parser = matchParser(userInput)
-    parser.parseChoicesToSet(set)
+    parser.parseChoicesToSet(danceClub)
 
-def doPairings():
-    allPairings = set.makeDancePairings()
+def doPairings(danceClub):
+    allPairings = danceClub.makeDancePairings()
     timeStamp = str(datetime.datetime.now())
     fileName = "pairings-" + timeStamp + ".txt"
     file = open(fileName, 'w')
     count = 0;
+    print("Made " + str(len(allPairings)) + " pairings")
     
     for pairing in allPairings:
         count += 1
         file.write("Matching " + str(count) + " of " + str(len(allPairings)) + "\n")
-        for line in pairing:
-            file.write(line + "\n")
+        for match in pairing:
+            line = match.replace('\n', '').replace('\r', '')
+            file.write(line + '\n')
             
     file.close()
 
-def doMatching():
+def doMatching(danceClub):
     ## Make the matches and print them in the console
-    set.makeMatches()
-    set.printMatches()   
+    danceClub.makeMatches()
+    danceClub.printMatches()   
     
     userInput = input("Would you like to send emails at this time? (yes/no): ")
     if userInput.lower() == "yes":
@@ -62,7 +66,7 @@ def doMatching():
         if userInput.lower() == "yeah":
             # Setup the emailer and send out the emails
             mailer = emailer.emailer()
-            set.sendEmails(mailer)
+            danceClub.sendEmails(mailer)
             mailer.quitEmail()
             print("Done!")
 
@@ -71,6 +75,8 @@ def main():
     
     This program allows you to run a ballroom dance partner search (or speed-dating, as they are the same thing)
     """)
+    
+    danceClub = dancerSet.dancerSet()
     
     while True:
         while True:
@@ -89,13 +95,13 @@ def main():
                 print("Error: you must enter a valid integer.")
             
         if userInput == 0:
-            setupDancers()
+            danceClub = setupDancers()
         elif userInput == 1:
-            setupChoices()
+            setupChoices(danceClub)
         elif userInput == 2:
-            doPairings()
+            doPairings(danceClub)
         elif userInput == 3:
-            doMatching()
+            doMatching(danceClub)
 
 if __name__ == '__main__':
     try:

@@ -18,8 +18,6 @@ class dancerSet(object):
         self.follows = list()
         self.matchesMade = 0
         self.iterationCursor = 0
-        
-    
     
     def addDancer(self, dancer):
         ## Adds a dancer to the appropriate list
@@ -105,33 +103,56 @@ class dancerSet(object):
             
     def makeDancePairings(self):
         ## Not tested
-        random.shuffle(self.leads)
-        random.shuffle(self.follows)
+#         random.shuffle(self.leads)
+#         random.shuffle(self.follows)
         
         ## alg idea. Create all matchings first with progressive offset
         ## then shuffle the order
         
+        print(str(len(self.leads)) + ", " + str(len(self.follows)))
+        
         bigGroup = self.leads if len(self.leads) > len(self.follows) else self.follows
         smallGroup = self.follows if bigGroup == self.leads else self.leads 
         allPairings = list()
-        
-        for offset in range(max(len(self.leads), len(self.follows))):      
+
+        for offset in range(0,min(len(self.leads), len(self.follows))):      
             pairing = list()
+            print('outer loop')
+            self.resetBusy()
+            
+            random.shuffle(bigGroup)
+            random.shuffle(smallGroup)
             
             for i in range(len(smallGroup)):
                 i = (i + offset) % len(smallGroup)
+                print('inner loop, i = ' + str(i))
                 
-                for j in range(len(bigGroup)):
-                    if not smallGroup[i].hasDancedWith(bigGroup[j]):
-                        match = smallGroup[i].toStringNumName() + " and " + bigGroup[j].toStringNumName()
-                        pairing.append(match)
-                        smallGroup[i].danceWith(bigGroup[j])
-                        bigGroup[j].danceWith(smallGroup[i])
-                        break        
+                if smallGroup[i].busy == 0:
+                    
+                    for j in range(len(bigGroup)):
+                        if bigGroup[j].busy == 0 and smallGroup[i].busy == 0:
                         
-            allPairings.append(pairings)
+                            if not smallGroup[i].hasDancedWith(bigGroup[j]):
+                                match = smallGroup[i].toStringNumName() + " and " \
+                                        + bigGroup[j].toStringNumName()
+                                bigGroup[j].busy = 1
+                                smallGroup[i].busy = 1  
+                                pairing.append(match)
+                                smallGroup[i].danceWith(bigGroup[j])
+                                bigGroup[j].danceWith(smallGroup[i])
+                                break       
+                                
             
-        return random.shuffle(allPairings)
+            for d in bigGroup:
+                if d.busy == 0:
+                    match = d.toStringNumName() + " alone "
+                    pairing.append(match)        
+                        
+            allPairings.append(pairing)
+        
+        self.resetBusy()    
+        random.shuffle(allPairings)
+        return allPairings
         
     def undoLastDanceMatches(self):
         for i in range(len(self.leads)):

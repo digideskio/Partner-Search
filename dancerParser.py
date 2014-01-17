@@ -27,14 +27,14 @@ class dancerParser(object):
             if (len(arr) != 4):
                 print("Error: file contains incorrectly formatted line.")
                 print(line)
-                return
             else:
                 name = arr[0]
                 email = arr[1]
                 isLead = arr[2].lower() == "lead"
                 code = arr[3]
-                
+
                 d = dancer(name, email, isLead, code)
+                print(d.toStringNumName())
                 set.addDancer(d)
                 count += 1
                 print(d.toStringNumName())
