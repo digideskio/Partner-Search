@@ -59,9 +59,9 @@ def doMatching(danceClub):
     danceClub.makeMatches()
     danceClub.printMatches()   
     
-    userInput = input("Would you like to send emails at this time? (yes/no): ")
+    userInput = raw_input("Would you like to send emails at this time? (yes/no): ")
     if userInput.lower() == "yes":
-        userInput = input("Are you sure? (yeah, nope): ")
+        userInput = raw_input("Are you sure? (yeah, nope): ")
         
         if userInput.lower() == "yeah":
             # Setup the emailer and send out the emails

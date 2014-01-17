@@ -37,17 +37,26 @@ class dancerSet(object):
                 self.follows.pop(j)
                 break
                 
-    def setChoicesByCode(self, code, choices):
+    def getDancerByCode(self, code):
         for lead in self.leads:
             if (code == lead.code):
-                lead.setChoices(choices)
-                return
+                return lead
         
         for follow in self.follows:
             if (code == follow.code):
-                follow.setChoices(choices)
-                return
-    
+                return follow
+                
+        return None
+                
+    def setChoicesByCode(self, code, choices):
+        one = self.getDancerByCode(str(code))
+        if one != None:
+            sel = []
+            for c in choices:
+                two = self.getDancerByCode(c)
+                if two != None:
+                    sel.append(two)
+            one.setChoices(sel)
     
     def sendEmails(self, mailer):
         ## Sends match emails to everyone in the set

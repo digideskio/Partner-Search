@@ -10,7 +10,10 @@ import dancerSet
 class matchParser(object):
 
     def __init__(self, choicesFile):
-        self.file = open(choicesFile, 'r')
+        try: 
+            self.file = open(choicesFile, 'r')
+        except:
+            print('Error opening ' + chociesFile)
         
     def parseChoicesToSet(self, set):
         for line in self.file:
@@ -23,5 +26,6 @@ class matchParser(object):
                 code = arr[0]
                 choices = list(arr[1])
                 set.setChoicesByCode(code, choices)
+                print(code + str(choices))
         
         self.file.close()

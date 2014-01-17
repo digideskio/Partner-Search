@@ -13,7 +13,8 @@ class dancerParser(object):
         try:
             self.file = open(dancersFile, 'r')
             print("Successfully opened {0}".format(dancersFile))
-        except FileNotFoundError:
+        except:
+            # todo: find the actual exceptions that should be caught
             print("Error: could not find file.")
             self.file = 0
         

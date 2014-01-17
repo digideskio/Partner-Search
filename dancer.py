@@ -15,7 +15,7 @@ class dancer(object):
         self.email = str(email)
         self.isLead = bool(isLead)
         self.choices = list()
-        self.code = code
+        self.code = str(code)
         self.matches = list()
         self.choices = list()
         self.dancedWith = list()

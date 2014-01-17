@@ -1,0 +1,35 @@
+Matching 1 of 5
+4 - Jake and b - Herpina
+1 - Herp and e - Sarah
+3 - Gord and f - Woman
+0 - Derp and a - Derpina
+5 - Jorden and d - Lauren
+c - Jill alone 
+Matching 2 of 5
+1 - Herp and f - Woman
+5 - Jorden and a - Derpina
+4 - Jake and d - Lauren
+0 - Derp and b - Herpina
+3 - Gord and c - Jill
+e - Sarah alone 
+Matching 3 of 5
+1 - Herp and a - Derpina
+5 - Jorden and b - Herpina
+4 - Jake and c - Jill
+0 - Derp and d - Lauren
+3 - Gord and e - Sarah
+f - Woman alone 
+Matching 4 of 5
+1 - Herp and d - Lauren
+0 - Derp and f - Woman
+5 - Jorden and c - Jill
+4 - Jake and e - Sarah
+3 - Gord and b - Herpina
+a - Derpina alone 
+Matching 5 of 5
+0 - Derp and c - Jill
+3 - Gord and a - Derpina
+5 - Jorden and e - Sarah
+4 - Jake and f - Woman
+1 - Herp and b - Herpina
+d - Lauren alone 
