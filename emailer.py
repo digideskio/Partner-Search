@@ -6,6 +6,7 @@ Created on 2013-01-09
 
 import smtplib
 from email.mime.text import MIMEText
+import getpass
 
 class emailer(object):
     '''
@@ -24,8 +25,10 @@ class emailer(object):
         
         ## Info for the gmail account sending the mail
         ## should change this to command line parameters or run an smtp server locally
-        password = 'DER'
-        self.sender = 'DER@gmail.com'
+        
+        self.sender = raw_input('Enter gmail address to send from: ')
+        print('Sending from: ' + self.sender)
+        password = getpass.getpass('enter password: ')
         
         self.subject = 'Partner Search'
         
@@ -46,7 +49,7 @@ class emailer(object):
         if(len(recipient.matches) > 0):
             body += "Your matches are as follows: " + recipient.getMatchesString() + ""
         else:
-            body += "Unfortunately, we were unsuccessful in pairing you with an individual that met your qualifications. If you would like to discuss this further, please email Olivia Yung at president@ubcdanceclub.com. \n\rAgain, thank you for your interest and we hope to see you dancing at UBC Gala Ball."
+            body += "Unfortunately, we were unsuccessful in pairing you with an individual that met your qualifications. If you would like to discuss this further, please email Holly Zhou at president@ubcdanceclub.com. \n\rAgain, thank you for your interest and we hope to see you dancing at UBC Gala Ball."
 
         headers = ["From: " + self.sender,
                    "Subject: " + self.subject,

@@ -82,7 +82,7 @@ def main():
         while True:
             try:
                 printMainOptions()
-                userInput = int(input("Select function (0,1,2,3): "))
+                userInput = int(raw_input("Select function (0,1,2,3): "))
                 validOptions = [0,1,2,3]
                 
                 if userInput in validOptions:

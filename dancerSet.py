@@ -6,6 +6,7 @@ Created on 2013-01-08
 
 import emailer
 import random
+import re
 
 class dancerSet(object):
     '''
@@ -18,13 +19,20 @@ class dancerSet(object):
         self.follows = list()
         self.matchesMade = 0
         self.iterationCursor = 0
+        self.dancersDict = dict()
+        self.nonAlphaNumeric = re.compile('[\W_]+')
     
     def addDancer(self, dancer):
         ## Adds a dancer to the appropriate list
+        
+        dancer.code = self.nonAlphaNumeric.sub('', dancer.code)
         if(dancer.isLead):
             self.leads.append(dancer)
         else:
             self.follows.append(dancer)
+        print('append dancer with code: ' + dancer.code)
+        self.dancersDict[dancer.code] = dancer
+        print('keys: ' + str(self.dancersDict.keys()))
             
     def removeDancer(self, code):
         for i in range(len(self.leads)):
@@ -38,25 +46,32 @@ class dancerSet(object):
                 break
                 
     def getDancerByCode(self, code):
-        for lead in self.leads:
-            if (code == lead.code):
-                return lead
-        
-        for follow in self.follows:
-            if (code == follow.code):
-                return follow
-                
-        return None
+        print('getting dancer with code ' + code)
+        dancer = self.dancersDict[code]
+        return dancer
+
                 
     def setChoicesByCode(self, code, choices):
-        one = self.getDancerByCode(str(code))
-        if one != None:
-            sel = []
-            for c in choices:
-                two = self.getDancerByCode(c)
-                if two != None:
-                    sel.append(two)
-            one.setChoices(sel)
+        choices = [self.nonAlphaNumeric.sub('', choice) for choice in choices]
+        choices = [choice for choice in choices if len(choice) == 1]
+        try:
+            one = self.getDancerByCode(str(code))
+        except KeyError as e:
+            print(e.args)
+        else:
+            print(str(one) + ' likes: ')
+            if one != None:
+                sel = []
+                for c in choices:
+                    c = self.nonAlphaNumeric.sub('', c)
+                    sel.append(c)
+    #                 if len(c) > 0:
+    #                     two = self.getDancerByCode(c)
+    #                     if two != None:
+    #                         sel.append(two)
+    #                         print(c)
+                one.setChoices(sel)
+            print(one.code + ' : ' + str(one.choices))
     
     def sendEmails(self, mailer):
         ## Sends match emails to everyone in the set

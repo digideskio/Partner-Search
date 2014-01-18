@@ -19,6 +19,7 @@ class dancer(object):
         self.matches = list()
         self.choices = list()
         self.dancedWith = list()
+        print(code)
         self.busy = 0
         
     def setChoices(self, choices):
